@@ -8,9 +8,9 @@ using namespace std;
 void spaces();
 void paragraph();
 int UI(char &);
-void timePassedAway(int);
+void timePassedAway(int &);
 void Calcualting_completeSentence(char *&, const char, int &);
-void displayingSentences(char &, char *&, int &, const int);
+void displayingSentences(char &, char *&, int &, int &);
 
 int main()
 {
@@ -52,23 +52,22 @@ int UI(char &currentLetter)
     return time(0);
 }
 
-void timePassedAway(int startTime)
+void timePassedAway(int &startTime)
 {
     int currentTime = time(0);
     int sec = currentTime - startTime;
-    int min = 0, hour = 0;
+    static int min, hour = 0;
     if (sec > 59)
     {
         min++;
-        sec = 0;
+        startTime = time(0);
     }
     if (min > 59)
     {
         hour++;
         min = 0;
-        sec = 0;
+        startTime = time(0);
     }
-
     cout << "Time passed : " << hour << " : " << min << " : " << sec << "\n";
 }
 
@@ -86,11 +85,13 @@ void Calcualting_completeSentence(char *&str, const char currentLetter, int &tot
         delete[] str;
         str = temp;
         totalLetters++;
+
+        
     }
-        if (currentLetter == 8)
+    if (currentLetter == 8)
     {
         char *temp = new char[totalLetters - 1];
-        for (int i = 0; i<totalLetters-1; i++)
+        for (int i = 0; i < totalLetters - 1; i++)
         {
             temp[i] = str[i];
         }
@@ -101,7 +102,7 @@ void Calcualting_completeSentence(char *&str, const char currentLetter, int &tot
     }
 }
 
-void displayingSentences(char &currentLetter, char *&str, int &totalLetters, const int startTime)
+void displayingSentences(char &currentLetter, char *&str, int &totalLetters, int &startTime)
 {
     while (currentLetter != 13)
     {
@@ -129,3 +130,4 @@ void displayingSentences(char &currentLetter, char *&str, int &totalLetters, con
         }
     }
 }
+
