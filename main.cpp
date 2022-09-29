@@ -74,16 +74,31 @@ void timePassedAway(int startTime)
 
 void Calcualting_completeSentence(char *&str, const char currentLetter, int &totalLetters)
 {
-    char *temp = new char[totalLetters + 1];
-    for (int i = 0; str[i] != '\0'; i++)
+    if (currentLetter != 8)
     {
-        temp[i] = str[i];
+        char *temp = new char[totalLetters + 1];
+        for (int i = 0; str[i] != '\0'; i++)
+        {
+            temp[i] = str[i];
+        }
+        temp[totalLetters - 1] = currentLetter;
+        temp[totalLetters] = '\0';
+        delete[] str;
+        str = temp;
+        totalLetters++;
     }
-    temp[totalLetters - 1] = currentLetter;
-    temp[totalLetters] = '\0';
-    delete[] str;
-    str = temp;
-    totalLetters++;
+        if (currentLetter == 8)
+    {
+        char *temp = new char[totalLetters - 1];
+        for (int i = 0; i<totalLetters-1; i++)
+        {
+            temp[i] = str[i];
+        }
+        temp[totalLetters - 2] = '\0';
+        delete[] str;
+        str = temp;
+        totalLetters--;
+    }
 }
 
 void displayingSentences(char &currentLetter, char *&str, int &totalLetters, const int startTime)
@@ -114,4 +129,3 @@ void displayingSentences(char &currentLetter, char *&str, int &totalLetters, con
         }
     }
 }
-
