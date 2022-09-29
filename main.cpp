@@ -4,19 +4,29 @@
 #include <conio.h>
 
 using namespace std;
-void Calcualting_completeSentence(char *&str, const char currentLetter, int &totalLetters)
+
+void spaces();
+void paragraph();
+int UI(char &);
+void timePassedAway(int);
+void Calcualting_completeSentence(char *&, const char, int &);
+void displayingSentences(char &, char *&, int &, const int);
+
+int main()
 {
-    char *temp = new char[totalLetters + 1];
-    for (int i = 0; str[i] != '\0'; i++)
-    {
-        temp[i] = str[i];
-    }
-    temp[totalLetters - 1] = currentLetter;
-    temp[totalLetters] = '\0';
+    int totalLetters = 1;
+    char *str = new char[totalLetters]{'\0'};
+    char currentLetter = 13;
+
+    int startTime = UI(currentLetter);
+    displayingSentences(currentLetter, str, totalLetters, startTime);
+
     delete[] str;
-    str = temp;
-    totalLetters++;
+    str = nullptr;
+
+    return 0;
 }
+
 void spaces() { cout << "\n\n\n"; }
 void paragraph()
 {
@@ -26,6 +36,7 @@ void paragraph()
     cout << "Being human makes us susceptible to the onset of feelings. The role of these emotions varies. Some of them are useful while others may be harmful. The use of social media for self-expression has reached a point that it makes us feel we can say anything. This begins when we see people expressing anything and everything that come to mind. When we see everyone else voicing their likes and dislikes, their irritations and desires we tend to imitate what they do. And because many engage in this, we think that it is normal and healthy. However, when we get used to unbridled self-expression, we come to believe that all feelings are valid. We become convinced that in real life, we should also act on our emotions and our impulses. Using social media this way erodes our ability to regulate our actions and reactions. To illustrate, when something small irritates us we think that it's okay to feel this way. But isn't it better to foster one's patience and resilience instead of immediately complaining? Or when we develop an attraction to someone despite that person being in a relationship, and because social media has conditioned us that all feelings can be expressed, we tend to think that acting on this attraction is okay. Not all feelings deserve expression. We find ourselves creating our own problems when we let our present emotions control our actions.\n";
     spaces();
 }
+
 int UI(char &currentLetter)
 {
     paragraph();
@@ -40,6 +51,7 @@ int UI(char &currentLetter)
     cout << "\t\t\t YOUR TEST STARTS, start typing \n\n\n";
     return time(0);
 }
+
 void timePassedAway(int startTime)
 {
     int currentTime = time(0);
@@ -59,12 +71,27 @@ void timePassedAway(int startTime)
 
     cout << "Time passed : " << hour << " : " << min << " : " << sec << "\n";
 }
-void displayingSentences(char &currentLetter, char *&str, int &totalLetters, int startTime)
+
+void Calcualting_completeSentence(char *&str, const char currentLetter, int &totalLetters)
+{
+    char *temp = new char[totalLetters + 1];
+    for (int i = 0; str[i] != '\0'; i++)
+    {
+        temp[i] = str[i];
+    }
+    temp[totalLetters - 1] = currentLetter;
+    temp[totalLetters] = '\0';
+    delete[] str;
+    str = temp;
+    totalLetters++;
+}
+
+void displayingSentences(char &currentLetter, char *&str, int &totalLetters, const int startTime)
 {
     while (currentLetter != 13)
     {
         currentLetter = getch();
-        if ((currentLetter >= 32 && currentLetter <= 126) || currentLetter==13)
+        if ((currentLetter >= 32 && currentLetter <= 126) || currentLetter == 13 || currentLetter == 8)
         {
             Calcualting_completeSentence(str, currentLetter, totalLetters);
             system("cls");
@@ -79,7 +106,7 @@ void displayingSentences(char &currentLetter, char *&str, int &totalLetters, int
             }
             spaces();
             spaces();
-            cout<<"To END : PRESS ENTER-KEY\n";
+            cout << "To END : PRESS ENTER-KEY\n";
         }
         else
         {
@@ -88,16 +115,3 @@ void displayingSentences(char &currentLetter, char *&str, int &totalLetters, int
     }
 }
 
-int main()
-{
-    int totalLetters = 1;
-    char *str = new char[totalLetters]{'\0'};
-    char currentLetter = 13;
-    int startTime = UI(currentLetter);
-    displayingSentences(currentLetter, str, totalLetters, startTime);
-
-    delete[] str;
-    str = nullptr;
-
-    return 0;
-}
