@@ -19,7 +19,7 @@
 `Typing-Speed-Tester` main feature is `run-time memory allocation` and `handling-characterArrays`.Main contain only `default` data, memory allocation and deallocation and one executed external function.
 
 <p align="center">
-  <img width="1000" src="Demo/demo.gif" alt="demo"/>
+  <img width="1000" src="My Video.gif" alt="demo"/>
 </p>
 
 ### Example of code [main.cpp](/main.cpp):
