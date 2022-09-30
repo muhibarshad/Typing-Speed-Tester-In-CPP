@@ -137,4 +137,4 @@ You can also follow my GitHub Profile to stay updated:
 Copyright © 2022 [Muhib Arshad](https://github.com/muhib7353). 
 
 
-This project is [MIT](https://github.com/muhib7353/Salik-Bank-Limited/blob/main/LICENSE) licensed.
+This project is [MIT](https://github.com/muhib7353/Typing-Speed-Tester-In-CPP/blob/main/LICENSE) licensed.
